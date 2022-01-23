@@ -65,9 +65,8 @@ export default {
         "time",
         "rating",
         "tags",
-        "order"
       ])
-      .sortBy("order")
+      .sortBy("date", 'desc')
       .fetch();
 
     return {
