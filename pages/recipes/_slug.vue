@@ -41,7 +41,13 @@
 export default {
   async asyncData({ $content, params }) {
     const recipe = await $content("recipes", params.slug).fetch();
-
+    if (recipe.author) {
+      try {
+        recipe.author = await $content("authors", recipe.author).fetch();
+      } catch (error) {
+        console.error("author", recipe.author, "does not exist")
+      }
+    }
     const [prev, next] = await $content("recipes")
       .only(["title", "slug"])
       .sortBy("createdAt", "asc")
