@@ -6,7 +6,7 @@
     "
   >
     <label for="searchbar"
-      >Search<span class="hide-mobile"> for your ideal recipe</span></label
+      >Rechercher<span class="hide-mobile"> une recette</span></label
     >
     <base-search-input />
   </div>

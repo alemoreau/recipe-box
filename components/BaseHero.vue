@@ -25,11 +25,11 @@ export default {
     },
     title: {
       type: String,
-      default: "The Healthy Dev"
+      default: "Moreau's Recipes"
     },
     subtitle: {
       type: String,
-      default: "Quick, delicious, healthy meals to keep your brain active."
+      default: "T'en r'veux encore ?!"
     }
   },
   methods: {
