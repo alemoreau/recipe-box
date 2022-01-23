@@ -1,8 +1,8 @@
 <template>
   <div>
-    <BaseNav />
+    <!-- <BaseNav /> -->
     <Nuxt />
-    <BaseFooter />
+    <!-- <BaseFooter /> -->
   </div>
 </template>
 
