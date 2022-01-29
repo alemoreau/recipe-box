@@ -4,8 +4,13 @@
       <p class="date">{{ formatDate(recipe.createdAt) }}</p>
       <h1 class="recipe-title">{{ recipe.title }}</h1>
       <div class="single-details">
-        <div class="time"><IconTime />{{ recipe.time }} minutes</div>
-        <div class="rating"><StarRating :rating="recipe.rating" /></div>
+        <div class="time">
+          <IconTime />
+          {{ recipe.time }} minutes
+        </div>
+        <div class="rating">
+          <StarRating :rating="recipe.rating" />
+        </div>
         <author :author="recipe.author" class="details-author" />
       </div>
       <p class="description">{{ recipe.description }}</p>
@@ -22,15 +27,45 @@
     ></div>
 
     <nav class="internal-nav">
-      <h4>Recipe Sections</h4>
-      <ul>
-        <li v-for="link of recipe.toc" :key="link.id">
-          <NuxtLink :to="`#${link.id}`"><IconLink /> {{ link.text }}</NuxtLink>
-        </li>
-      </ul>
+      <div class="ingredients panel">
+        <h4>Ingredients</h4>
+        <ul>
+          <li
+            v-for="ingredient of recipe.ingredients"
+            :key="ingredient.name"
+          >{{ ingredient.name }} {{ ingredient.quantity }}</li>
+        </ul>
+      </div>
+      <div class="ustensils panel">
+        <h4>Ustensiles</h4>
+        <ul>
+          <li v-for="ustensil of recipe.ustensils" :key="ustensil.name">{{ ustensil.name }}</li>
+        </ul>
+      </div>
+      <div class="instructions panel">
+        <h4>Instructions</h4>
+        <ul>
+          <li v-for="link of recipe.toc" :key="link.id">
+            <NuxtLink :to="`#${link.id}`">
+              <IconLink />
+              {{ link.text }}
+            </NuxtLink>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <article>
+      <!-- <section v-for="instruction of recipe.instructions" :key="instruction.name">
+        <h4>{{ instruction.name }}</h4>
+        <NuxtContent :document="instruction.description" />
+        <ul>
+          <li v-for="step of instruction.steps" :key="instruction.name + step.name">
+            <h5>{{ step.name }}</h5>
+            <NuxtContent :document="step.description" />
+          </li>
+        </ul>
+      </section> -->
       <NuxtContent :document="recipe" />
       <BasePrevNext :prev="prev" :next="next" />
     </article>
@@ -106,7 +141,7 @@ article {
 }
 
 .nuxt-content {
-  width: 50vw;
+  max-width: 50vw;
   margin-top: -20px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 30px;
@@ -160,7 +195,7 @@ article {
     margin-top: 0;
   }
 
-  .internal-nav {
+  .panel {
     margin-top: 20px;
   }
 }
@@ -188,22 +223,22 @@ article {
   margin-left: -10px;
 }
 
-.internal-nav h4 {
+.panel h4 {
   padding: 8px;
 }
 
-.internal-nav ul {
+.panel ul {
   padding-left: 0;
 }
 
-.internal-nav li {
+.panel li {
   border-top: 1px solid grey;
   padding: 8px;
   list-style: none;
   font-size: 15px;
 }
 
-.internal-nav a {
+.panel a {
   text-decoration: none;
   color: black;
 }

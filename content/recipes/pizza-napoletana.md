@@ -71,21 +71,7 @@ instructions:
           (facultatif) Pour un meilleur résultat, reformer les boules de temps en temps.
     name: Boules de pâte
     description: >-
-      
-
-      *
-
-      *
-
-      *
-
-      *
-
-      * Refaire une boule, et répeter l'opération précédente tant que la surface n'est pas lisse
-
-      *
-
-      *
+      Refaire une boule, et répeter l'opération précédente tant que la surface n'est pas lisse
   - duration: 0
     steps:
       - name: Préparation
@@ -112,13 +98,6 @@ instructions:
     description: ""
 author: map-name-alexandre-image-img-33374936_2150658218292318_3868693097542057984_n-jpg
 ---
-## Ingredients
-- 840g farine 00
-- 5-10g levure sèche
-- 10g miel
-- huile d'olive
-- garniture au choix
-## Instructions
 ### Poolish
 - Préparer 400ml d'eau (tiède ou à température ambiante)
 - Verser une petite partie (~50ml) dans un bol, avec le miel et la levure, et mélanger.

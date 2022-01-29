@@ -51,5 +51,28 @@ export default {
   content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+  hooks: {
+    // Doc: https://content.nuxtjs.org/advanced#contentfilebeforeinsert
+    "content:file:beforeInsert": async (document, database) => {
+      // search for markdown containing
+      // only `specialNotice` property.
+      if (document.extension === ".md" && document.instructions) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document.instructions = await Promise.all(document.instructions.map(async (instruction) => ({
+          ...instruction,
+          description: await database.markdown.toJSON(
+            instruction.description
+          ),
+          steps: await Promise.all(instruction.steps.map(async (step) => ({
+            ...step,
+            description: await database.markdown.toJSON(
+              instruction.description
+            ),
+          })))
+        })))
+      }
+    }
+  }
 };

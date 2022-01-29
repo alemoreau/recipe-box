@@ -7,33 +7,74 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'authors'
-    label: 'Authors'
-    folder: 'content/authors'
-    format: 'frontmatter'
+  - name: "authors"
+    label: "Authors"
+    folder: "content/authors"
+    format: "frontmatter"
     create: true
     editor:
       preview: false
     fields:
-      - { label: 'Name', name: 'name', widget: 'string' }
-      - { label: 'Image', name: 'image', widget: 'image' }
-  - name: 'recipes'
-    label: 'Recipes'
-    folder: 'content/recipes'
-    format: 'frontmatter'
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+  - name: "recipes"
+    label: "Recipes"
+    folder: "content/recipes"
+    format: "frontmatter"
     create: true
-    slug: '{{slug}}'
+    slug: "{{slug}}"
     editor:
       preview: true
     fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Description', name: 'description', widget: 'string' }
-      - { label: 'Meal', name: 'meal', widget: 'select', options: ['Breakfast', 'Lunch', 'Dinner', 'Snack'] }
-      - { label: 'Image', name: 'img', widget: 'image' }
-      - { label: 'Tags', name: 'tags', widget: 'list', default: [], allow_add: true }
-      - { label: 'Time', name: 'time', widget: 'number'}
-      - { label: 'Rating', name: 'rating', widget: 'number', min: 0, max: 5 }
-      - { label: 'Order', name: 'order', widget: 'number' }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Meal", name: "meal", widget: "select", options: ["Breakfast", "Lunch", "Dinner", "Snack"] }
+      - { label: "Image", name: "img", widget: "image" }
+      - { label: "Gallery", name: "gallery", widget: "image", allow_multiple: true, required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: [], allow_add: true }
+      - { label: "Time", name: "time", widget: "number"}
+      - { label: "Rating", name: "rating", widget: "number", min: 0, max: 5 }
+      - { label: "Order", name: "order", widget: "number" }
+      - label: "Ingredients"
+        name: "ingredients"
+        widget: "list"
+        summary: "{{fields.name}} {{fields.quantity}}"
+        fields:
+          - {label: "Name", name: "name", widget: "string" }
+          - {label: "Quantity", name: "quantity", widget: "string", required: false }
+          - {label: "Optional", name: "optional", widget: "boolean", default: false }
+      - label: "Ustensils"
+        name: "ustensils"
+        widget: "list"
+        summary: "{{fields.name}}"
+        fields:
+          - {label: "Name", name: "name", widget: "string" }
+          - {label: "Optional", name: "optional", widget: "boolean", default: false }
+      - label: "Instructions"
+        name: "instructions"
+        widget: "list"
+        summary: "{{fields.name}} ({{fields.duration}} min)"
+        fields:
+          - {label: "Name", name: "name", widget: "string" }
+          - {label: "Description", name: "description", widget: "markdown", required: false }
+          - label: "Media"
+            name: "media"
+            widget: "image"
+            required: false
+          - {label: "Duration", name: "duration", widget: "number", default: 0, hint: "duration in minutes"}
+          - label: "Steps"
+            name: "steps"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - {label: "Name", name: "name", widget: "string" }
+              - {label: "Description", name: "description", widget: "markdown", required: false }
+              - label: "Media"
+                name: "media"
+                widget: "image"
+                allow_multiple: true
+                required: false
+            default: [{name: "Step 1", description: "This is the first step"}]
       - label: "Author"
         name: "author"
         widget: "relation"
@@ -41,7 +82,7 @@ collections:
         search_fields: ["name"]
         value_field: "{{slug}}"
         display_fields: ["name"]
-      - label: 'Body'
-        name: 'body'
-        widget: 'markdown'
-        default: "## Ingredients\n- Sugar snap peas, trimmed and diagonally cut\n- 1lb brussels sprouts, shaved\n- Goat or feta cheese crumbles\n- Salt to taste\n- 1 tbsp olive oil\n- 1 tbsp sesame seeds\n## Instructions\n- Steam the peas and sprouts until they're bright green and tender, blanche\n- Place the veggies in a bowl with the rest of the ingredients and mix"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        default: ""
